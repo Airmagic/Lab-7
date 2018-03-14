@@ -1,18 +1,27 @@
+
 {% load staticfiles %}
+<!-- declaring that this ia html document -->
 <!DOCTYPE html>
 <html>
+  <!-- header for the webpage -->
   <head>
+    <!-- the title for the web page it's on the tab -->
     <title>Travel Wishlist</title>
-
+    <!-- pulling style sheets to make the webpage look better -->
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <!-- This is the internal css for that i can change -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
   </head>
+  <!-- the body of the webpage -->
   <body>
+    <!-- this is the content of the page sent by different parts of the website -->
     {% block content %}
     {% endblock %}
 
+    <!-- this addeds a break on the page -->
     <hr>
 
+    <!-- This is on the bottom of the page for navagation -->
     <p>A travel Wishlist site built with Django</p>
     <a href="{% url 'place_list' %}">Your wishlist</a>
     <a href="{% url 'places_visited' %}">Places you've visited</a>

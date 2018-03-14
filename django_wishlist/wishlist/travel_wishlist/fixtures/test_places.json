@@ -1,3 +1,5 @@
+/* This is a file for adding places to a list for testing purpose */
+
 [
   { "model":"travel_wishlist.place",
     "pk":1,

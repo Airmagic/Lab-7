@@ -1,27 +1,40 @@
+<!-- This is the block content on base html -->
 {% extends 'travel_wishlist/base.html' %}
 {% block content %}
 
+<!-- First headline for the page -->
 <h1>Travel Wishlist</h1>
 
+<!-- Asking the user for a new place to add to the list -->
 <form method="POST" action="{% url 'place_list' %}">
+  <!-- Cross-Site Request Forgery to make it harder to hack this sites db-->
   {% csrf_token %}
+  <!-- pulling inform from views.py -->
   {{ new_place_form }}
+  <!-- this is the add submit button -->
   <button id="add-new-place" type="submit">Add</button>
 </form>
 
+<!-- pulling the list and printing it out for the user from views.py -->
 {% for place in places %}
 
+
 <div class="wishlist-place">
+  <!-- This prints out the list of places from the users list -->
   <span id="place-name-{{ place.pk }}" class="visited-text">{{ place.name }}</span>
 
+  <!-- This is a button so the user can change to visited -->
   <form class="visited-form" method="POST" action="{% url 'place_is_visited' %}">
+    <!-- sercurity token -->
     {% csrf_token %}
+    <!-- this addeds the name of the button to change the correct place -->
     <input type="hidden" name="pk" value="{{ place.pk }}">
     <button id="mark-visited-{{ place.pk }}" type="submit">Visited!</button>
   </form>
 
 </div>
 
+<!-- this is for a empty list it will print this out instead of being blank -->
 {% empty %}
 
 <p> You have nothing in your places wishlist</p>
