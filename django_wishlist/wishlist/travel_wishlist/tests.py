@@ -1,7 +1,9 @@
+# this file was made by django
 from django.test import TestCase
 from django.urls import reverse
 
 from .models import Place
+
 
 class TestViewHomePageIsEmptyList(TestCase):
 
@@ -11,16 +13,23 @@ class TestViewHomePageIsEmptyList(TestCase):
         self.assertFalse(response.context['places'])
 
 class TestWishList(TestCase):
+
+    # loading information into the db for testing
     fixtures = ['test_places']
+
 
     def test_view_wishlist(self):
         response = self.client.get(reverse('place_list'))
+        # checking the template
         self.assertTemplateUsed(response, 'travel_wishlist/wishlist.html')
 
+        # data is sent to the template
         data_rendered = list(response.context['places'])
 
+        # filting out visited false
         data_expected = list(Place.objects.filter(visited=False))
 
+        # checking if they are equal
         self.assertCountEqual(data_rendered, data_expected)
 
     def test_view_places_visited(self):
