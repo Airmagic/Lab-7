@@ -17,7 +17,7 @@
   <form class="visited-form" method="POST" action="{% url 'place_is_visited' %}">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ place.pk }}">
-    <button id="mark-visited-{{ place.pk }}" type="submit">Visited!!</button>
+    <button id="mark-visited-{{ place.pk }}" type="submit">Visited!</button>
   </form>
 
 </div>

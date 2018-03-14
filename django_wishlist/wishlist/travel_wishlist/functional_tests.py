@@ -16,6 +16,17 @@ class TitleTest(LiveServerTestCase):
         self.browser.get(self.live_server_url)
         assert 'Wishlist' in self.browser.title
 
+class FunctionalityTests(LiveServerTestCase):
+
+    fixtures = ['test_places']
+
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.browser.implicitly_wait(3)
+
+    def tearDown(self):
+        self.browser.quit()
+
     def test_add_new_place(self):
 
          # Load home page
